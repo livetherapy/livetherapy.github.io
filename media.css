@@ -1,0 +1,682 @@
+:root {
+  --section-space-desktop: 140px;
+  --section-space-tablet: 110px;
+  --section-space-mobile: 84px;
+
+  --section-title-size: clamp(40px, 6vw, 88px);
+  --section-subtitle-size: clamp(13px, 1.3vw, 18px);
+  --card-radius: 28px;
+  --menu-radius: 28px;
+  --container-pad: 24px;
+}
+
+.container {
+  width: min(1240px, calc(100% - 48px));
+}
+
+.about,
+.team,
+.partners,
+.faq,
+.cta,
+.contacts {
+  padding-top: var(--section-space-desktop);
+  padding-bottom: var(--section-space-desktop);
+}
+
+.pilot {
+  padding-bottom: var(--section-space-desktop);
+}
+
+.about-top,
+.pilot-top,
+.team-top,
+.partners-top,
+.faq-top,
+.cta-top,
+.contacts-top {
+  margin-bottom: 72px;
+}
+
+.about-top h2,
+.pilot-top h2,
+.team-top h2,
+.partners-top h2,
+.faq-top h2,
+.cta-top h2,
+.contacts-top h2 {
+  font-size: var(--section-title-size);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.about-top p,
+.pilot-top p,
+.team-top p,
+.partners-top p,
+.faq-top p,
+.cta-top p,
+.contacts-top p {
+  margin-bottom: 24px;
+  font-size: var(--section-subtitle-size);
+  letter-spacing: 0.28em;
+}
+
+.about-top h2 span,
+.pilot-top h2 span,
+.team-top h2 span,
+.partners-top h2 span,
+.faq-top h2 span,
+.cta-top h2 span,
+.contacts-top h2 span {
+  display: block;
+  margin-top: 12px;
+  font-size: clamp(20px, 2vw, 30px);
+  line-height: 1.15;
+}
+
+/* єдина логіка карток */
+.about-list article,
+.pilot-text > div,
+.team-list article,
+.partners-list article,
+.cta-list article,
+.contacts-list article,
+.alert,
+.faq-item {
+  border-radius: var(--card-radius);
+}
+
+/* єдині відступи всередині */
+.about-list article,
+.pilot-text > div,
+.team-list article,
+.partners-list article,
+.cta-list article,
+.contacts-list article {
+  padding: 32px;
+}
+
+.about-list,
+.pilot-text,
+.team-list,
+.partners-list,
+.faq-list,
+.cta-list,
+.contacts-list {
+  gap: 28px;
+}
+
+.row {
+  flex-wrap: wrap;
+}
+
+/* -------- desktop large -------- */
+@media (max-width: 1280px) {
+  .container {
+    width: min(100% - 40px, 1180px);
+  }
+
+  .logo {
+    font-size: clamp(42px, 5vw, 80px);
+  }
+
+  .hero-content h1 {
+    font-size: clamp(74px, 10vw, 140px);
+  }
+
+  .hero-name span {
+    font-size: clamp(28px, 3.2vw, 48px);
+  }
+
+  .hero-name b {
+    font-size: clamp(22px, 2.8vw, 42px);
+  }
+
+  .about-list article,
+  .about-list .image,
+  .team-list article img {
+    min-height: auto;
+  }
+
+  .team-list article {
+    grid-template-columns: 360px 1fr;
+    gap: 32px;
+  }
+}
+
+/* -------- tablet -------- */
+@media (max-width: 991px) {
+  :root {
+    --section-space-desktop: var(--section-space-tablet);
+    --card-radius: 24px;
+  }
+
+  .hero::before {
+    opacity: 0.3;
+  }
+
+  body {
+    font-size: 18px;
+  }
+
+  .container {
+    width: min(100% - 32px, 100%);
+  }
+
+  .header {
+    padding: 14px 0;
+  }
+
+  .nav-container {
+    padding: 0;
+    gap: 16px;
+  }
+
+  .logo {
+    position: relative;
+    z-index: 12000;
+    max-width: 200px;
+  }
+
+  .burger {
+    display: flex;
+    position: relative;
+    z-index: 12000;
+  }
+
+  .burger span {
+    background: #fff;
+    border-radius: 999px;
+  }
+
+  .nav {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    left: 16px;
+    height: auto;
+    min-height: calc(100vh - 32px);
+    padding: 108px 28px 28px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--menu-radius);
+    background: linear-gradient(
+      180deg,
+      rgba(31, 38, 58, 0.96) 0%,
+      rgba(61, 71, 104, 0.98) 100%
+    );
+    backdrop-filter: blur(18px);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 28px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-14px) scale(0.98);
+    transition:
+      opacity 0.35s ease,
+      visibility 0.35s ease,
+      transform 0.35s ease;
+  }
+
+  .nav.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+    right: 0;
+    left: 0;
+    top: 0;
+    border-radius: 0;
+  }
+
+  .nav-list {
+    display: grid;
+    gap: 12px;
+  }
+
+  .nav-list a {
+    display: flex;
+    align-items: center;
+    min-height: 56px;
+    padding: 16px 18px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    font-family: var(--font-title);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition:
+      background 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .nav-list a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(4px);
+  }
+
+  .nav .social-block {
+    gap: 12px;
+  }
+
+  .social-link {
+    width: 48px;
+    height: 48px;
+  }
+
+  .hero {
+    min-height: 100svh;
+    padding-top: 130px;
+    padding-bottom: 60px;
+  }
+
+  .hero-content {
+    gap: 18px;
+    padding: 50px 0;
+  }
+
+  .hero-content > span::before,
+  .hero-content > span::after {
+    width: 72px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(56px, 13vw, 96px);
+    line-height: 0.9;
+    text-align: center;
+  }
+
+  .hero-name span,
+  .hero-name b {
+    text-align: center;
+  }
+
+  .btn,
+  .btn-hero {
+    margin-top: 20px;
+    min-height: 52px;
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+
+  .about-list,
+  .pilot-text,
+  .contacts-list {
+    grid-template-columns: 1fr;
+  }
+
+  .team-list article,
+  .partners-list article,
+  .cta-list article {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .team-list article > div:first-of-type,
+  .partners-list article > div:first-of-type,
+  .cta-list article > div:first-of-type {
+    grid-column: auto;
+    max-width: none;
+  }
+
+  .team-list article img {
+    height: 460px;
+  }
+
+  .about-list .image .side-word,
+  .pilot-text > span,
+  .team-list article > span,
+  .faq-list article > span {
+    display: none;
+  }
+
+  .alert {
+    padding: 34px 28px;
+    margin-top: 72px;
+  }
+
+  .alert > div {
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .alert span {
+    font-size: 140px;
+    line-height: 0.9;
+  }
+
+  .faq-question span {
+    font-size: 20px;
+  }
+
+  .pilot-run {
+    margin-bottom: 56px;
+  }
+
+  .pilot-run div {
+    font-size: 16px;
+    letter-spacing: 0.2em;
+  }
+  .social-block {
+    justify-content: center;
+  }
+
+  .social-block {
+    margin-top: 15px;
+  }
+  .partners-cta {
+    padding: 22px;
+  }
+}
+
+/* -------- mobile -------- */
+@media (max-width: 767px) {
+  :root {
+    --section-space-desktop: var(--section-space-mobile);
+    --card-radius: 22px;
+    --menu-radius: 22px;
+  }
+
+  html {
+    overflow-x: hidden;
+  }
+
+  body {
+    font-size: 16px;
+  }
+
+  .cta-list {
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    width: calc(100% - 24px);
+  }
+
+  .about,
+  .pilot,
+  .team,
+  .partners,
+  .faq,
+  .cta,
+  .contacts {
+    padding-top: var(--section-space-desktop);
+    padding-bottom: var(--section-space-desktop);
+  }
+
+  .pilot {
+    padding-top: 0;
+  }
+  .about-top,
+  .pilot-top,
+  .team-top,
+  .partners-top,
+  .faq-top,
+  .cta-top,
+  .contacts-top {
+    margin-bottom: 44px;
+  }
+
+  .about-top h2,
+  .pilot-top h2,
+  .team-top h2,
+  .partners-top h2,
+  .faq-top h2,
+  .cta-top h2,
+  .contacts-top h2 {
+    font-size: clamp(30px, 9vw, 44px);
+    line-height: 1;
+  }
+
+  .about-top p,
+  .pilot-top p,
+  .team-top p,
+  .partners-top p,
+  .faq-top p,
+  .cta-top p,
+  .contacts-top p {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    margin-bottom: 18px;
+  }
+
+  .about-top h2 span,
+  .pilot-top h2 span,
+  .team-top h2 span,
+  .partners-top h2 span,
+  .faq-top h2 span,
+  .cta-top h2 span,
+  .contacts-top h2 span {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+
+  .hero {
+    padding-top: 130px;
+    padding-bottom: 70px;
+    min-height: auto;
+  }
+
+  .hero-content > span {
+    gap: 10px;
+    letter-spacing: 0.14em;
+    font-size: 4vw;
+    text-align: center;
+  }
+
+  .hero-content > span::before,
+  .hero-content > span::after {
+    width: 36px;
+  }
+
+  .hero-content h1 {
+    font-size: 10vw;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-name {
+    gap: 10px;
+  }
+
+  .hero-name span {
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  .hero-name b {
+    font-size: 16px;
+    letter-spacing: 0.14em;
+    line-height: 1.35;
+  }
+
+  .hero-content .row {
+    margin-top: 20px;
+  }
+
+  .row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .btn,
+  .btn-hero {
+    width: 100%;
+    margin-top: 0;
+    min-height: 50px;
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+
+  .about-list article,
+  .pilot-text > div,
+  .team-list article,
+  .partners-list article,
+  .cta-list article,
+  .contacts-list article {
+    padding: 22px;
+  }
+
+  .about-list,
+  .pilot-text,
+  .team-list,
+  .partners-list,
+  .faq-list,
+  .cta-list,
+  .contacts-list {
+    gap: 18px;
+  }
+
+  .about-list h3,
+  .faq-list h3,
+  .team-list article > div:first-of-type h3,
+  .partners-list h3,
+  .cta-list h3,
+  .contacts-list h3 {
+    font-size: 24px;
+    line-height: 1.15;
+    margin-bottom: 18px;
+  }
+
+  .about-list p,
+  .about-list li,
+  .pilot-text p,
+  .pilot-text li,
+  .faq-answer p,
+  .team-list p,
+  .partners-list p,
+  .cta-list p,
+  .contacts-list p,
+  .about-list .pilot-text li,
+  .team-list article > div:last-of-type p {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .pilot-text ul {
+    gap: 10px;
+  }
+
+  .about-list .image .image-box {
+    padding-top: 125px;
+    align-items: center;
+  }
+
+  .about-list .image .image-box p {
+    font-size: 28px;
+    max-width: 100%;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .team-list h4 {
+    font-size: 28px;
+    line-height: 1.1;
+  }
+  .alert .row {
+    margin-top: 20px;
+  }
+  .faq-item {
+    border-radius: 20px;
+    padding: 0 16px;
+  }
+  .about-list .image .row {
+    width: 100%;
+  }
+  .faq-question {
+    padding: 18px 0;
+    gap: 14px;
+  }
+
+  .faq-question span {
+    font-size: 17px;
+    line-height: 1.35;
+  }
+
+  .faq-question i,
+  .faq-question i::before,
+  .faq-question i::after {
+    width: 18px;
+  }
+
+  .alert {
+    padding: 40px;
+    margin-top: 48px;
+    max-width: 90vw;
+  }
+
+  .alert span {
+    font-size: 82px;
+    position: absolute;
+    left: -30px;
+    top: -60px;
+    z-index: 10;
+  }
+
+  .alert p,
+  p.accent {
+    font-size: 18px;
+    line-height: 1.35;
+  }
+
+  .contacts-list {
+    grid-template-columns: 1fr;
+  }
+
+  .contacts-list .social-block {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .pilot-run {
+    padding: 14px 0;
+    margin-bottom: 40px;
+  }
+
+  .pilot-run div {
+    font-size: 13px;
+    letter-spacing: 0.16em;
+  }
+}
+
+/* -------- small mobile -------- */
+@media (max-width: 479px) {
+  .nav {
+    top: 12px;
+    right: 12px;
+    left: 12px;
+    min-height: max-content;
+    padding: 90px 15px 30px;
+  }
+
+  .logo {
+    font-size: 32px;
+  }
+
+  .social-link {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+
+  .about-list article > div,
+  .partners-list article > div,
+  .cta-list article > div {
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  .about-list article > div span {
+    font-size: 15px;
+    letter-spacing: 0.16em;
+  }
+
+  .about-list .image .image-box p {
+    font-size: 24px;
+  }
+}
